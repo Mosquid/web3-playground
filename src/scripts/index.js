@@ -2,7 +2,7 @@ const ABI = require("./ABI.json");
 const { attachTansactionHandlers } = require("./transactions");
 let contract;
 
-const contractAddress = "0x9fab4c3f66de52e53eacfd106181b50adc8033bf";
+const contractAddress = "0xE3fD304704ae2599970Eb0b7b2b9BC672b3A0eB6";
 
 async function loadWeb3() {
   if (window.ethereum) {
@@ -17,7 +17,7 @@ async function loadContract() {
 
 async function updateRecord() {
   const record = document.getElementById("record");
-  const theLastOne = await contract.methods.greatLastPerson().call();
+  const theLastOne = await contract.methods.greetLastPerson().call();
 
   record.innerText = theLastOne;
 }
@@ -27,7 +27,7 @@ async function handleNameChange(e) {
   try {
     const [account] = await web3.eth.getAccounts();
     const emitter = contract.methods
-      .setWhoToGreat(name)
+      .setWhoToGreet(name)
       .send({ from: account });
 
     attachTansactionHandlers(emitter);
